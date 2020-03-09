@@ -36,6 +36,10 @@ public class AllureListener extends BaseTest implements ITestListener {
     public void onTestSuccess(ITestResult result) {
         System.out.println("SUCCESS " + getTestMethodName(result));
 
+        Object testClass = result.getInstance();
+        RemoteWebDriver webDriver = ((BaseTest) testClass).getDriver();
+        generateVideoURL(webDriver);
+
         Cookie cookie = new Cookie("zaleniumTestPassed", "true");
         driver.manage().addCookie(cookie);
 

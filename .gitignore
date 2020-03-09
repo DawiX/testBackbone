@@ -1,7 +1,6 @@
 *DS_Store
 target
 config.properties
-screenshots/*
 .checkstyle
 .idea
 .gradle

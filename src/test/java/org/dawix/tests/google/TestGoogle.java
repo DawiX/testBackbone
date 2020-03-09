@@ -1,5 +1,6 @@
 package org.dawix.tests.google;
 
+import io.qameta.allure.*;
 import org.dawix.listeners.AllureListener;
 import org.dawix.tests.common.BaseTest;
 import org.openqa.selenium.By;
@@ -9,12 +10,18 @@ import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import static org.openqa.selenium.support.ui.ExpectedConditions.*;
-//Listener has to be explicitely here beause AspectJ does not work well with XML configuration
+//Listener has to be explicitly here because AspectJ does not work well with XML configuration
 // https://github.com/allure-framework/allure1/issues/730
 @Test
 @Listeners({AllureListener.class})
+@Epic("E2E tests")
+@Feature("Google search tests")
 public class TestGoogle extends BaseTest {
     @Test
+    @Story("I want to have a test that fails")
+    @Severity(SeverityLevel.MINOR)
+    @TmsLink("TESTCASE-2")
+    @Link("http://something/JIRA-123")
     public void accessGoogle() {
         driver.get("https://www.google.com/ncr");
 
@@ -31,6 +38,8 @@ public class TestGoogle extends BaseTest {
 
     @Test
     //@Step("Search google and pass")
+    @Story("I want a passing test")
+    @TmsLink("TESTCASE-2")
     public void testGoogle() {
         driver.get("https://www.google.com/ncr");
 
