@@ -9,6 +9,8 @@ import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import static org.openqa.selenium.support.ui.ExpectedConditions.*;
+//Listener has to be explicitely here beause AspectJ does not work well with XML configuration
+// https://github.com/allure-framework/allure1/issues/730
 @Test
 @Listeners({AllureListener.class})
 public class TestGoogle extends BaseTest {

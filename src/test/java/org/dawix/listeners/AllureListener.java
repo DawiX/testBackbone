@@ -1,8 +1,8 @@
 package org.dawix.listeners;
 
-import io.qameta.allure.Allure;
 import io.qameta.allure.Attachment;
 import org.dawix.tests.common.BaseTest;
+import org.openqa.selenium.Cookie;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
@@ -22,6 +22,11 @@ public class AllureListener extends BaseTest implements ITestListener {
         return ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
     }
 
+    @Attachment
+    public String generateVideoURL(RemoteWebDriver driver) {
+        return "http://localhost:4444/dashboard/?q=" + driver.getSessionId();
+    }
+
     @Override
     public void onTestStart(ITestResult result) {
         System.out.println("START " + getTestMethodName(result));
@@ -30,6 +35,12 @@ public class AllureListener extends BaseTest implements ITestListener {
     @Override
     public void onTestSuccess(ITestResult result) {
         System.out.println("SUCCESS " + getTestMethodName(result));
+
+        Cookie cookie = new Cookie("zaleniumTestPassed", "true");
+        driver.manage().addCookie(cookie);
+
+        Cookie name = new Cookie("zaleniumMessage", getTestMethodName(result));
+        driver.manage().addCookie(name);
     }
 
     @Override
@@ -39,6 +50,13 @@ public class AllureListener extends BaseTest implements ITestListener {
         Object testClass = result.getInstance();
         RemoteWebDriver webDriver = ((BaseTest) testClass).getDriver();
         saveScreenshotPNG(webDriver);
+        generateVideoURL(webDriver);
+
+        Cookie cookie = new Cookie("zaleniumTestPassed", "false");
+        driver.manage().addCookie(cookie);
+
+        Cookie name = new Cookie("zaleniumMessage", getTestMethodName(result));
+        driver.manage().addCookie(name);
     }
 
     @Override
