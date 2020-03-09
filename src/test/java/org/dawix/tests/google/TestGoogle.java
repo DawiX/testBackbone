@@ -1,13 +1,16 @@
 package org.dawix.tests.google;
 
+import org.dawix.listeners.AllureListener;
 import org.dawix.tests.common.BaseTest;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import static org.openqa.selenium.support.ui.ExpectedConditions.*;
 @Test
+@Listeners({AllureListener.class})
 public class TestGoogle extends BaseTest {
     @Test
     public void accessGoogle() {

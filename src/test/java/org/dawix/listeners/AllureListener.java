@@ -38,10 +38,6 @@ public class AllureListener extends BaseTest implements ITestListener {
 
         Object testClass = result.getInstance();
         RemoteWebDriver webDriver = ((BaseTest) testClass).getDriver();
-
-        String base64Screenshot = "data:image/png;base64," + ((TakesScreenshot) webDriver).
-                getScreenshotAs(OutputType.BASE64);
-        Allure.addAttachment("Screenshot", base64Screenshot);
         saveScreenshotPNG(webDriver);
     }
 
