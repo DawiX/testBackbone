@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="TestRunner" >
+    <listeners>
+        <listener class-name="org.dawix.listeners.AllureListener"/>
+    </listeners>
+
+    <parameter name="browser_name" value="chrome"/>
+
+
+    <test name="TestRunner">
+        <classes>
+            <class name="org.dawix.tests.TestExecutor"/>
+        </classes>
+    </test>
+</suite>

@@ -1,0 +1,41 @@
+package org.dawix.tests.google;
+
+import org.dawix.tests.common.BaseTest;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.testng.Assert;
+import org.testng.annotations.Test;
+
+import static org.openqa.selenium.support.ui.ExpectedConditions.*;
+@Test
+public class TestGoogle extends BaseTest {
+    @Test
+    public void accessGoogle() {
+        driver.get("https://www.google.com/ncr");
+
+        By question = By.name("q");
+        wait.until(presenceOfElementLocated(question));
+        WebElement element = driver.findElement(question);
+
+        element.sendKeys("webdriver");
+        element.submit();
+        //By result = By.xpath("//h3[text()='Selenium Projects']");
+        //wait.until(presenceOfElementLocated(result));
+        Assert.fail();
+    }
+
+    @Test
+    //@Step("Search google and pass")
+    public void testGoogle() {
+        driver.get("https://www.google.com/ncr");
+
+        By question = By.name("q");
+        wait.until(presenceOfElementLocated(question));
+        WebElement element = driver.findElement(question);
+
+        element.sendKeys("webdriver");
+        element.submit();
+        //By result = By.xpath("//h3[text()='Selenium Projects']");
+        //wait.until(presenceOfElementLocated(result));
+    }
+}
