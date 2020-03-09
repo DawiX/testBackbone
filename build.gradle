@@ -78,14 +78,7 @@ task playground(type: Test) {
     configureAndRunTest(it, suiteList, reportDestination)
 }
 
-task testExecutor(type: Test) {
-    useTestNG {
-        useDefaultListeners = true
-        configFailurePolicy 'skip'
-    }
-    include 'org/dawix/tests/TestExecutor'
-}
-
+//programmatic task - not that much beneficial
 task executeTests(type: Test) {
     def suiteList = ["suites/testRunner.xml"]
     def reportDestination = name
