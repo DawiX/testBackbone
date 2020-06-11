@@ -1,6 +1,7 @@
 # Contributing
 Pushing into master is not permitted. Changes are possible only through pull requests.
 
+
 To make things easier, you can install `python3 -m pip install git-pull-request`
 
 When branch is created (for example with `git checkout -b myownbranch --track origin/master`)
