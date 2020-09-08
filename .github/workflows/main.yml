@@ -37,33 +37,32 @@ jobs:
         SELENIUM_HUB_HOST: hub
         TEST_HOST: testHost
     services:
-      hub:
-        image: selenium/hub
-      chrome:
-        image: selenium/node-chrome
-        env:
-          HUB_HOST: hub
-          HUB_PORT: 4444
+#      hub:
+#        image: selenium/hub
+#      chrome:
+#        image: selenium/node-chrome
+#        env:
+#          HUB_HOST: hub
+#          HUB_PORT: 4444
 
 #    services:
-#      zalenium:
-#        image: dosel/zalenium
-#        env:
-#          PULL_SELENIUM_IMAGE: true
-#          HUB_HOST: localhost
-#          HUB_PORT: 4444
-#          SELENIUM_HUB_HOST: 'localhost'
-#        volumes:
-#          - /var/run/docker.sock:/var/run/docker.sock
-#          - /tmp/videos:/home/seluser/videos
-#        ports:
-#          - 4444:4444
-#        options: >-
-#          --privileged
-#          --health-cmd "curl -sSL http://localhost:4444/wd/hub/status"
-#          --health-interval 10s
-#          --health-timeout 5s
-#          --health-retries 5
+      zalenium:
+        image: dosel/zalenium
+        env:
+          PULL_SELENIUM_IMAGE: true
+          HUB_HOST: hub
+          HUB_PORT: 4444
+        volumes:
+          - /var/run/docker.sock:/var/run/docker.sock
+          - /tmp/videos:/home/seluser/videos
+        ports:
+          - 4444:4444
+        options: >-
+          --privileged
+          --health-cmd "curl -sSL http://hub:4444/wd/hub/status"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
 
 
 
