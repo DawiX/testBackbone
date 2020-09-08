@@ -29,6 +29,8 @@ jobs:
     #needs: build
     runs-on: ubuntu-latest
     services:
+      selenium:
+        image: elgalu/selenium
       zalenium:
         image: dosel/zalenium
         env:
