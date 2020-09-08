@@ -84,12 +84,12 @@ jobs:
     - name: Generate Report
       if: ${{ always() }}
       run: ./gradlew allureReport
-    - name: Publish Test Report
-      if: ${{ always() }}
-      uses: actions/upload-artifact@v2
-      with:
-        name: allure-report
-        path: ./build/reports/allure-report
+#    - name: Publish Test Report
+#      if: ${{ always() }}
+#      uses: actions/upload-artifact@v2
+#      with:
+#        name: allure-report
+#        path: ./build/reports/allure-report
 #    - name: Publish Report
 #      uses: afiore/action-allure-report@1
 #        with:
