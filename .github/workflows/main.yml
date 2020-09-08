@@ -55,14 +55,14 @@ jobs:
         NODE_ENV: test
         SELENIUM_HUB_HOST: hub
         TEST_HOST: testHost
-      services:
-        hub:
-          image: selenium/hub
-        chrome:
-          image: selenium/node-chrome
-          env:
-            HUB_HOST: hub
-            HUB_PORT: 4444
+    services:
+      hub:
+        image: selenium/hub
+      chrome:
+        image: selenium/node-chrome
+        env:
+          HUB_HOST: hub
+          HUB_PORT: 4444
 
     steps:
     - uses: actions/checkout@v2
