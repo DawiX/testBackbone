@@ -85,11 +85,13 @@ jobs:
       if: ${{ always() }}
       run: ./gradlew allureReport
     - name: Copy files
+      if: ${{ always() }}
       run: |
         mkdir docs
         cp -r ./build/allure-results ./docs/allure-results
         cp -r ./build/allure-reports ./docs
     - name: Deploy report page
+      if: ${{ always() }}
       uses: peaceiris/actions-gh-pages@v3
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
