@@ -27,11 +27,16 @@ public class BaseTest {
     @Parameters({"browser_name"})
     public void setup(String browser_name, ITestContext ctx) throws Exception {
         String suiteName = ctx.getCurrentXmlTest().getSuite().getName();
+        String HUB_HOST = "localhost";
+        if (System.getenv("SELENIUM_HUB_HOST") != null) {
+            HUB_HOST = System.getenv("SELENIUM_HUB_HOST");
+        }
+        System.out.println(HUB_HOST);
         DesiredCapabilities capabilities = getBrowserCapabilities(browser_name, false);
         // Zalenium creating video under sessionID name
         //capabilities.setCapability("name", suiteName);
         capabilities.setCapability("testFileNameTemplate", "myID_{seleniumSessionId}_{testStatus}");
-        driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), capabilities);
+        driver = new RemoteWebDriver(new URL("http://" + HUB_HOST + ":4444/wd/hub"), capabilities);
         driver.manage().window().setSize(new Dimension(1920, 1080));
         wait = new WebDriverWait(driver, 30);
     }
