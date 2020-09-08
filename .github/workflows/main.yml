@@ -57,7 +57,7 @@ jobs:
     #   working-directory: ./docker
     #   run: docker-compose up --force-recreate -d
     - name: Zalenium startup test
-      uses: ajinx/zalenium@v1.1
+    - uses: ajinx/zalenium@v1.1
     - name: Debugging of Zalenium
       env:
         SELENIUM_HUB_HOST: 'localhost'
