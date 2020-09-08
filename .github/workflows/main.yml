@@ -47,22 +47,35 @@ jobs:
 #          --health-timeout 5s
 #          --health-retries 5
 
+
+    container:
+      image: node:14.4
+      options: --network-alias testHost
+      env:
+        NODE_ENV: test
+        SELENIUM_HUB_HOST: hub
+        TEST_HOST: testHost
+      services:
+        hub:
+          image: selenium/hub
+        chrome:
+          image: selenium/node-chrome
+          env:
+            HUB_HOST: hub
+            HUB_PORT: 4444
+
     steps:
     - uses: actions/checkout@v2
     - name: Set up JDK 11
       uses: actions/setup-java@v1
       with:
         java-version: 11
-    - name: Start up Zalenium stack
-      working-directory: ./docker
-      run: docker-compose up --force-recreate -d
-    - name: Debugging of Zalenium
+#    - name: Start up Zalenium stack
+#      working-directory: ./docker
+#      run: docker-compose up --force-recreate -d
+    - name: Debugging of Selenium localhost
       run: curl -sSL http://localhost:4444/wd/hub/status
-    #- name: Debugging of Zalenium
-    #  run: curl -sSL http://localhost:4444/wd/hub/status
-    #- name: Run tests
-    #   working-directory: ./
-      #run: ./gradlew cleanUp playground
-    # - name: Kill Zalenium stack
-    #   working-directory: ./docker
-    #   run: docker-compose down
+    - name: Debugging of Selenium hub
+      run: curl -sSL http://hub:4444/wd/hub/status
+#    - name: Run tests
+#      run: ./gradlew cleanUp playground
