@@ -31,7 +31,6 @@ jobs:
     services:
       zalenium:
         image: dosel/zalenium
-        name: zalenium
         env:
           PULL_SELENIUM_IMAGE: true
           HUB_HOST: localhost
