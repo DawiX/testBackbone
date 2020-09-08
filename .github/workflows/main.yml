@@ -39,7 +39,12 @@ jobs:
           - /tmp/videos:/home/seluser/videos
         ports: 
           - 4444:4444
-        options: --privileged
+        options:
+        --privileged
+        --health-cmd curl -sSL http://localhost:4444/wd/hub/status
+        --health-interval 10s
+        --health-timeout 5s
+        --health-retries 5
         #options: --rm -ti -v /var/run/docker.sock:/var/run/docker.sock -v /tmp/videos:/home/seluser/videos --privileged
 
     steps:
