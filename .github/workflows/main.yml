@@ -84,6 +84,7 @@ jobs:
     - name: Generate Report
       run: ./gradlew allureReport
     - name: Publish Test Report
+      if: ${{ always() }}
       uses: actions/upload-artifact@v2
       with:
         name: allure-report
