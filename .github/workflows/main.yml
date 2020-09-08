@@ -73,8 +73,6 @@ jobs:
 #    - name: Start up Zalenium stack
 #      working-directory: ./docker
 #      run: docker-compose up --force-recreate -d
-    - name: Debugging of Selenium localhost
-      run: curl -sSL http://localhost:4444/wd/hub/status
     - name: Debugging of Selenium hub
       run: curl -sSL http://hub:4444/wd/hub/status
 #    - name: Run tests
