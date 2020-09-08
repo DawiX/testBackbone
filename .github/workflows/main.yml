@@ -38,6 +38,8 @@ jobs:
     - name: Start up Zalenium stack
       working-directory: ./docker
       run: docker-compose up --force-recreate -d
+    - name: Debugging of Zalenium
+      run: curl -Is http://localhost:4444/dashboard/ | head -n 1
     # - name: Run tests
     #   working-directory: ./
     #   run: ./gradlew cleanUp playground
