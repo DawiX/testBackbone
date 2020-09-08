@@ -31,9 +31,13 @@ jobs:
     services:
       zalenium:
         image: dosel/zalenium
+        volumes: 
+          - /var/run/docker.sock:/var/run/docker.sock
+          - /tmp/videos:/home/seluser/videos
         ports: 
           - 4444:4444
-        options: --rm -ti -v /var/run/docker.sock:/var/run/docker.sock -v /tmp/videos:/home/seluser/videos --privileged
+        options: --privileged
+        #options: --rm -ti -v /var/run/docker.sock:/var/run/docker.sock -v /tmp/videos:/home/seluser/videos --privileged
 
     steps:
     - uses: actions/checkout@v2
