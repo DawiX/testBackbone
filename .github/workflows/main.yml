@@ -28,27 +28,24 @@ jobs:
   test:
     #needs: build
     runs-on: ubuntu-latest
-    services:
-      selenium:
-        image: elgalu/selenium
-      zalenium:
-        image: dosel/zalenium
-        env:
-          PULL_SELENIUM_IMAGE: true
-          HUB_HOST: localhost
-          SELENIUM_HUB_HOST: 'localhost'
-        volumes: 
-          - /var/run/docker.sock:/var/run/docker.sock
-          - /tmp/videos:/home/seluser/videos
-        ports: 
-          - 4444:4444
-        options: >-
-          --privileged
+#    services:
+#      zalenium:
+#        image: dosel/zalenium
+#        env:
+#          PULL_SELENIUM_IMAGE: true
+#          HUB_HOST: localhost
+#          SELENIUM_HUB_HOST: 'localhost'
+#        volumes:
+#          - /var/run/docker.sock:/var/run/docker.sock
+#          - /tmp/videos:/home/seluser/videos
+#        ports:
+#          - 4444:4444
+#        options: >-
+#          --privileged
 #          --health-cmd "curl -sSL http://localhost:4444/wd/hub/status"
 #          --health-interval 10s
 #          --health-timeout 5s
 #          --health-retries 5
-        #options: --rm -ti -v /var/run/docker.sock:/var/run/docker.sock -v /tmp/videos:/home/seluser/videos --privileged
 
     steps:
     - uses: actions/checkout@v2
@@ -59,8 +56,14 @@ jobs:
     # - name: Start up Zalenium stack
     #   working-directory: ./docker
     #   run: docker-compose up --force-recreate -d
+    - name: Zalenium startup test
+      uses: ajinx/zalenium@v1.1
     - name: Debugging of Zalenium
-      run: curl -sSL http://localhost:4444/wd/hub/status
+      env:
+        SELENIUM_HUB_HOST: 'localhost'
+        run: curl -sSL http://localhost:4444/wd/hub/status
+    #- name: Debugging of Zalenium
+    #  run: curl -sSL http://localhost:4444/wd/hub/status
     #- name: Run tests
     #   working-directory: ./
       #run: ./gradlew cleanUp playground
