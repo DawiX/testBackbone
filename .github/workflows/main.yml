@@ -87,7 +87,7 @@ jobs:
     - name: Copy files
       if: ${{ always() }}
       run: |
-        mkdir docs
+        mkdir -p docs
         cp -r ./build/allure-results ./docs/allure-results
         cp -r ./build/allure-reports ./docs
     - name: Deploy report page
