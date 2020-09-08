@@ -26,8 +26,13 @@ jobs:
     
 
   test:
-    needs: build
+    #needs: build
     runs-on: ubuntu-latest
+    services:
+      zalenium:
+        image: dosel/zalenium
+        ports: 4444:4444
+        options: --rm -ti -v /var/run/docker.sock:/var/run/docker.sock -v /tmp/videos:/home/seluser/videos --privileged
 
     steps:
     - uses: actions/checkout@v2
@@ -35,15 +40,14 @@ jobs:
       uses: actions/setup-java@v1
       with:
         java-version: 11
-    - name: Start up Zalenium stack
-      working-directory: ./docker
-      run: docker-compose up --force-recreate -d
+    # - name: Start up Zalenium stack
+    #   working-directory: ./docker
+    #   run: docker-compose up --force-recreate -d
     - name: Debugging of Zalenium
       run: curl -Is http://localhost:4444/dashboard/ | head -n 1
     # - name: Run tests
     #   working-directory: ./
     #   run: ./gradlew cleanUp playground
-    - name: Kill Zalenium stack
-      working-directory: ./docker
-      run: docker-compose down
-
+    # - name: Kill Zalenium stack
+    #   working-directory: ./docker
+    #   run: docker-compose down
