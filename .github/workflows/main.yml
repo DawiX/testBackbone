@@ -58,5 +58,5 @@ jobs:
         java-version: 11
     - name: Debugging of Selenium localhost
       run: curl -sSL http://hub:4444/wd/hub/status
-    - name: Run tests
-      run: ./gradlew cleanUp playground
+#    - name: Run tests
+#      run: ./gradlew cleanUp playground
