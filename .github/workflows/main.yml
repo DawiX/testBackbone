@@ -39,7 +39,7 @@ jobs:
           - /tmp/videos:/home/seluser/videos
         ports: 
           - 4444:4444
-        options:
+        options: >-
         --privileged
         --health-cmd curl -sSL http://localhost:4444/wd/hub/status
         --health-interval 10s
