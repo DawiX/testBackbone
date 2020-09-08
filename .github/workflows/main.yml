@@ -53,15 +53,11 @@ jobs:
       uses: actions/setup-java@v1
       with:
         java-version: 11
-    # - name: Start up Zalenium stack
-    #   working-directory: ./docker
-    #   run: docker-compose up --force-recreate -d
-    - name: Zalenium startup test
-    - uses: ajinx/zalenium@v1.1
+     - name: Start up Zalenium stack
+       working-directory: ./docker
+       run: docker-compose up --force-recreate -d
     - name: Debugging of Zalenium
-      env:
-        SELENIUM_HUB_HOST: 'localhost'
-        run: curl -sSL http://localhost:4444/wd/hub/status
+      run: curl -sSL http://localhost:4444/wd/hub/status
     #- name: Debugging of Zalenium
     #  run: curl -sSL http://localhost:4444/wd/hub/status
     #- name: Run tests
