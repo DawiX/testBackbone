@@ -38,9 +38,9 @@ jobs:
     - name: Start up Zalenium stack
       working-directory: ./docker
       run: docker-compose up --force-recreate -d
-    - name: Run tests
-      working-directory: ./
-      run: ./gradlew cleanUp playground
+    # - name: Run tests
+    #   working-directory: ./
+    #   run: ./gradlew cleanUp playground
     - name: Kill Zalenium stack
       working-directory: ./docker
       run: docker-compose down
