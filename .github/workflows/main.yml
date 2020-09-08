@@ -79,5 +79,5 @@ jobs:
 #      run: docker-compose up --force-recreate -d
     - name: Debugging of Selenium localhost
       run: curl -sSL http://hub:4444/wd/hub/status
-#    - name: Run tests
-#      run: ./gradlew cleanUp playground
+    - name: Run tests
+      run: ./gradlew cleanUp playground
