@@ -82,6 +82,7 @@ jobs:
     - name: Run tests
       run: ./gradlew cleanUp playground
     - name: Generate Report
+      if: ${{ always() }}
       run: ./gradlew allureReport
     - name: Publish Test Report
       if: ${{ always() }}
