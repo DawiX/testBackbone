@@ -52,10 +52,10 @@ jobs:
     #   working-directory: ./docker
     #   run: docker-compose up --force-recreate -d
     - name: Debugging of Zalenium
-      run: curl -Is http://localhost:4444/dashboard/ | head -n 1
-    - name: Run tests
+      run: curl -sSL http://localhost:4444/wd/hub/status
+    #- name: Run tests
     #   working-directory: ./
-      run: ./gradlew cleanUp playground
+      #run: ./gradlew cleanUp playground
     # - name: Kill Zalenium stack
     #   working-directory: ./docker
     #   run: docker-compose down
