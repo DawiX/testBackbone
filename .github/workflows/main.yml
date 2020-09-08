@@ -28,6 +28,23 @@ jobs:
   test:
     #needs: build
     runs-on: ubuntu-latest
+
+    container:
+      image: node:14.4
+      options: --network-alias testHost
+      env:
+        NODE_ENV: test
+        SELENIUM_HUB_HOST: localhost
+        TEST_HOST: testHost
+      services:
+        hub:
+          image: selenium/hub
+        chrome:
+          image: selenium/node-chrome
+          env:
+            HUB_HOST: localhost
+            HUB_PORT: 4444
+
 #    services:
 #      zalenium:
 #        image: dosel/zalenium
@@ -48,21 +65,7 @@ jobs:
 #          --health-retries 5
 
 
-#    container:
-#      image: node:14.4
-#      options: --network-alias testHost
-#      env:
-#        NODE_ENV: test
-#        SELENIUM_HUB_HOST: hub
-#        TEST_HOST: testHost
-    services:
-      hub:
-        image: selenium/hub
-      chrome:
-        image: selenium/node-chrome
-        env:
-          HUB_HOST: hub
-          HUB_PORT: 4444
+
 
     steps:
     - uses: actions/checkout@v2
@@ -73,7 +76,7 @@ jobs:
 #    - name: Start up Zalenium stack
 #      working-directory: ./docker
 #      run: docker-compose up --force-recreate -d
-    - name: Debugging of Selenium hub
-      run: curl -sSL http://hub:4444/wd/hub/status
+    - name: Debugging of Selenium localhost
+      run: curl -sSL http://localhost:4444/wd/hub/status
 #    - name: Run tests
 #      run: ./gradlew cleanUp playground
