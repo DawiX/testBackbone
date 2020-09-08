@@ -36,6 +36,7 @@ jobs:
         env:
           PULL_SELENIUM_IMAGE: true
           HUB_HOST: localhost
+          SELENIUM_HUB_HOST: 'localhost'
         volumes: 
           - /var/run/docker.sock:/var/run/docker.sock
           - /tmp/videos:/home/seluser/videos
