@@ -81,9 +81,19 @@ jobs:
       run: curl -sSL http://hub:4444/wd/hub/status
     - name: Run tests
       run: ./gradlew cleanUp playground
+      continue-on-error: true
     - name: Generate Report
-      if: ${{ always() }}
       run: ./gradlew allureReport
+    - name: Commit changes
+      working-directory: ./build/reports/allure-report
+      run: |
+        git commit -m "Add changes" -a
+    - name: Push changes
+      uses: ad-m/github-push-action@master
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        branch: 'gh-pages'
+        directory: ./build/reports/allure-report
 #    - name: Publish Test Report
 #      if: ${{ always() }}
 #      uses: actions/upload-artifact@v2
